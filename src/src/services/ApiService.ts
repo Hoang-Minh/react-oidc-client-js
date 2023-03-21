@@ -9,6 +9,8 @@ export class ApiService {
 
   public callApi(): Promise<any> {
     return this.authService.getUser().then(user => {
+
+      // user.profile.su = userId in the database
       if (user && user.access_token && user.profile.sub) {
         return this._callApi(user.access_token, user.profile.sub).catch(error => {
           if (error.response.status === 401) {
@@ -34,6 +36,7 @@ export class ApiService {
       Authorization: 'Bearer ' + token
     };
 
+    // sending request to get a user profile based on userId
     return axios.get(process.env.REACT_APP_API_ENDPOINT + `/profile/${userId}`, { headers });
   }
 }
