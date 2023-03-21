@@ -14,7 +14,7 @@
 
     <script src="oidc-client.min.js"></script>
     <script>
-        new Oidc.UserManager({ response_mode: "query" }).signinRedirectCallback().then(function () {
+        new Oidc.UserManager({ response_type: "token" }).signinRedirectCallback().then(function () {
             window.location = "index.html";
         }).catch(function (e) {
             console.error(e);

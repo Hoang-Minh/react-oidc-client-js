@@ -1,4 +1,4 @@
-import { Log, User, UserManager } from 'oidc-client';
+import { Log, User, UserManager, WebStorageStateStore } from 'oidc-client';
 
 export class AuthService {
   public userManager: UserManager;
@@ -6,11 +6,22 @@ export class AuthService {
     const settings = {
       authority: process.env.REACT_APP_STS_AUTHORITY,
       client_id: process.env.REACT_APP_CLIENT_ID,
-      redirect_uri: window.location.origin + '/signin-callback.html',
-      silent_redirect_uri: window.location.origin + '/silent-renew.html',
-      post_logout_redirect_uri: window.location.origin,
+      redirect_uri: 'http://localhost:3000/signin-callback.html',
+      //silent_redirect_uri: window.location.origin + '/silent-renew.html',
+      post_logout_redirect_uri: 'http://localhost:3000',
       response_type: process.env.REACT_APP_RESPONSE_TYPE,
-      scope: process.env.REACT_APP_CLIENT_SCOPE
+      scope: process.env.REACT_APP_CLIENT_SCOPE,
+      loadUserInfo: true,
+      automaticSilentRenew: true,
+      acr_values: '',
+      metadata: {
+          issuer: process.env.REACT_APP_STS_AUTHORITY,
+          authorization_endpoint: process.env.REACT_APP_STS_AUTHORITY + '/connect/authorize',
+          token_endpoint: process.env.REACT_APP_STS_AUTHORITY + '/connect/token',
+          jwks_uri: process.env.REACT_APP_STS_AUTHORITY + '/.well-known/openid-configuration/jwks',
+          userinfo_endpoint: process.env.REACT_APP_STS_AUTHORITY + '/connect/userinfo',
+          end_session_endpoint: process.env.REACT_APP_STS_AUTHORITY + '/connect/endsession'
+      }
     };
 
     this.userManager = new UserManager(settings);
