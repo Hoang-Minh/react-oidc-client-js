@@ -19,7 +19,7 @@
     "react-toastify": "6.0.8"
   },
   "scripts": {
-    "start": "set PORT=3000 && react-scripts start",
+    "start": "set PORT=44450 && react-scripts start",
     "build": "react-scripts build",
     "postbuild": "node iisConfig/copyIISConfig.js",
     "test": "react-scripts test --env=jsdom",

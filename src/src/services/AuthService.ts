@@ -6,9 +6,9 @@ export class AuthService {
     const settings = {
       authority: process.env.REACT_APP_STS_AUTHORITY,
       client_id: process.env.REACT_APP_CLIENT_ID,
-      redirect_uri: 'http://localhost:3000/signin-callback.html',
+      redirect_uri: 'http://localhost:44450/signin-callback.html',
       //silent_redirect_uri: window.location.origin + '/silent-renew.html',
-      post_logout_redirect_uri: 'http://localhost:3000',
+      post_logout_redirect_uri: 'http://localhost:44450',
       response_type: process.env.REACT_APP_RESPONSE_TYPE,
       scope: process.env.REACT_APP_CLIENT_SCOPE,
       loadUserInfo: true,
